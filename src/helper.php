@@ -15,7 +15,7 @@ if (! function_exists('jslang')) {
             return $content->{App::getLocale()};
         
         } catch (\Exception $e){
-            return "error_including_jslang_file.js"
+            return "error_including_jslang_file.js";
         }
         
     }
