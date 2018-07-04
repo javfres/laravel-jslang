@@ -1,0 +1,28 @@
+{
+    "name": "javfres/laravel-jslang",
+    "description": "Laravel Javascript Translator",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Javi",
+            "email": "javfres@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Javfres\\JsLang\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Javfres\\JsLang\\JsLangServiceProvider"
+            ]
+        }
+    }
+ 
+
+ 
+}
