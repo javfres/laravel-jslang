@@ -12,7 +12,7 @@
         border: 1px solid black;
     }
   </style>
-  <script src="{{ jslang() }}"></script>
+  <script src="my_jslang.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
   <script>
@@ -40,9 +40,6 @@
     
     <h1>JsLang demo</h1>
 
-    <p> Locale is <b>'{{ App::getLocale() }}'</b> </p>
-    
-
     <table>
         <tr>
             <th>key</th>
@@ -50,10 +47,10 @@
             <th>JsLang trans</th>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans('jslang::demo.name') </code></td>
-            <td>{{ trans('jslang::demo.name') }}</td>
+            <td>Name</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans('jslang::demo.name') );
@@ -61,10 +58,10 @@
             </td>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans('jslang::demo.welcome',['name'=>'You']) </code></td>
-            <td>{{trans('jslang::demo.welcome',['name'=>'You'])  }}</td>
+            <td>Welcome You!!!</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans('jslang::demo.welcome',{'name':'You'})  );
@@ -73,10 +70,10 @@
         </tr>
         
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.apples',1) </code></td>
-            <td>{{trans_choice('jslang::demo.apples',1)  }}</td>
+            <td>There is one apple</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.apples',1)  );
@@ -84,10 +81,10 @@
             </td>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.apples',10) </code></td>
-            <td>{{trans_choice('jslang::demo.apples',10)  }}</td>
+            <td>There are many apples</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.apples',10)  );
@@ -95,10 +92,10 @@
             </td>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.apples',["one","two"]]) </code></td>
-            <td>{{trans_choice('jslang::demo.apples',["one","two"])  }}</td>
+            <td>There are many apples</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.apples',["one","two"])  );
@@ -107,10 +104,10 @@
         </tr>
         
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.apples2',0]) </code></td>
-            <td>{{trans_choice('jslang::demo.apples2',0)  }}</td>
+            <td>There are none apples</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.apples2',0)  );
@@ -118,10 +115,10 @@
             </td>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.apples2',100]) </code></td>
-            <td>{{trans_choice('jslang::demo.apples2',100)  }}</td>
+            <td>There are many apples (100)</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.apples2',100)  );
@@ -129,10 +126,10 @@
             </td>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.apples2',["one","two"]]) </code></td>
-            <td>{{trans_choice('jslang::demo.apples2',["one","two"])  }}</td>
+            <td>There are some apples (2)</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.apples2',["one","two"])  );
@@ -141,10 +138,10 @@
         </tr>
         
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.books',["one","two"]]) </code></td>
-            <td>{{trans_choice('jslang::demo.books',["one","two"])  }}</td>
+            <td>There are 2 books.</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.books',["one","two"])  );
@@ -153,10 +150,10 @@
         </tr>
         
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.books2',4, ['theme'=>'History']]) </code></td>
-            <td>{{trans_choice('jslang::demo.books2',4,['theme'=>'History'])  }}</td>
+            <td>Four is a great number of books about History!</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.books2',4,{'theme':'History'})  );
@@ -165,10 +162,10 @@
         </tr>
         
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans_choice('jslang::demo.books2',1000],['theme'=>'History']) </code></td>
-            <td>{{trans_choice('jslang::demo.books2',1000,['theme'=>'History'])  }}</td>
+            <td>The number of books you have is uncountable!</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans_choice('jslang::demo.books2',1000,{'theme':'History'})  );
@@ -176,10 +173,10 @@
             </td>
         </tr>
         
-        {{-- ------------------------------ --}}
+        
         <tr>
             <td><code> trans('jslang::demo.missing_key') </code></td>
-            <td>{{ trans('jslang::demo.missing_key') }}</td>
+            <td>jslang::demo.missing_key</td>
             <td class='jstrans'>
                 <script>
                     add_trans( trans('jslang::demo.missing_key') );

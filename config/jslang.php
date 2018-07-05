@@ -24,4 +24,9 @@ return [
     //
     'js_file_prefix' => 'jslang_',
     
+    //
+    // Trim the string to optimize the result
+    //
+    'trim'           => true,
+    
 ];

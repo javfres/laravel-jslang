@@ -186,7 +186,11 @@ class JSLangCommand extends Command {
                 $file = $parts[1];
             }
             
-            $dict[$namespace][$file] = Lang::get($key, [], $locale);                    
+            $lang_data = Lang::get($key, [], $locale);
+            if(config('jslang.trim')){
+                $lang_data = $this->optimize_trim($lang_data);
+            }
+            $dict[$namespace][$file] = $lang_data;               
         }
         
         //
@@ -220,6 +224,25 @@ class JSLangCommand extends Command {
         $manifest_file = $path . '/jslang_manifest.json';
         file_put_contents($manifest_file, $content);
 
+    }
+    
+    
+    private function optimize_trim($x){
+    
+        
+        if(is_array($x)){
+            $x = array_map('self::optimize_trim', $x);
+        }
+        
+        if(is_string($x)){
+            $x = trim($x);
+            $arr = explode('|',$x);
+            $arr = array_map('trim', $arr);
+            $x = implode('|',$arr);
+        }
+        
+        return $x;
+    
     }
     
 

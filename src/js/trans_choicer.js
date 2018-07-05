@@ -93,16 +93,20 @@ class Choicer {
 
 class Range {
     constructor(a,b){
-        this.a = a.trim() === '*' ? null : +a;
-        this.b = b.trim() === '*' ? null : +b;
+        this.a = isNaN(a.trim()) ? null : +a;
+        this.b = isNaN(b.trim()) ? null : +b;
     }
     contains(x){
+        if(this.a === null && this.b === null){
+            return true;
+        } else if(this.a === null){
+            return x <= this.b;
+        } else if(this.b === null) {
+            return x >= this.a;
+        }
         
-        if(this.a === null) return x <= this.b;
-        if(this.b === null) return x >= this.a;
-
         return this.a<=x && this.b>=x;
-    }
+    } // contains
 };
 
 class List {
