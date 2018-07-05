@@ -57,6 +57,10 @@ Add the script in the blade (this will load the dictionary based on the current 
 
 ## Test
 
+I've created a demo view to test the translations
+and compare the php and js versions.
+Add this to the routes:
+
 ```
 Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
 ```
