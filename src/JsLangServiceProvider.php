@@ -12,6 +12,10 @@ class JsLangServiceProvider extends ServiceProvider{
         $this->publishes([
             __DIR__.'/../config/jslang.php' => config_path('jslang.php'),
         ]);
+        
+        $this->loadViewsFrom(__DIR__.'/../views', 'jslang');
+        
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'jslang');
                 
     }
 

@@ -1,8 +1,6 @@
 
 # Laravel JsLang
 
-*Note*: The js is not minimized, the babel present didn't work :(
-
 This is a laravel package that transform the laravel php dictionaries
 into javascript keeping the same usage method.
 
@@ -47,11 +45,22 @@ the locales, dictionaries, and paths.
 
 `php artisan vendor:publish`
 
-Add the script in the blade:
+Generate the javascript dictionaries from the php ones:
+
+`php artisan javfres:jslang`
+
+Add the script in the blade (this will load the dictionary based on the current locale):
 
 ```
 <script src="{{ jslang() }}"></script>
 ```
+
+## Test
+
+```
+Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
+```
+
 
 
 
@@ -88,4 +97,106 @@ A demo
 node src/js/demo_dict.js
 ```
 
+
+## Output of the demo view
+
+<table>
+        <tbody><tr>
+            <th>key</th>
+            <th>Laravel php trans</th>
+            <th>JsLang trans</th>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans('jslang::demo.name') </code></td>
+            <td>Name</td>
+            <td class="jstrans">Name</td>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans('jslang::demo.welcome',['name'=&gt;'You']) </code></td>
+            <td>Welcome You!!!</td>
+            <td class="jstrans">Welcome You!!!</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.apples',1) </code></td>
+            <td>There is one apple</td>
+            <td class="jstrans">There is one apple</td>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.apples',10) </code></td>
+            <td>There are many apples</td>
+            <td class="jstrans">There are many apples</td>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.apples',["one","two"]]) </code></td>
+            <td>There are many apples</td>
+            <td class="jstrans">There are many apples</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.apples2',0]) </code></td>
+            <td>There are none apples</td>
+            <td class="jstrans">There are none apples</td>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.apples2',100]) </code></td>
+            <td>There are many apples (100)</td>
+            <td class="jstrans">There are many apples (100)</td>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.apples2',["one","two"]]) </code></td>
+            <td>There are some apples (2)</td>
+            <td class="jstrans">There are some apples (2)</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.books',["one","two"]]) </code></td>
+            <td>There are 2 books.</td>
+            <td class="jstrans">There are 2 books.</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.books2',4, ['theme'=&gt;'History']]) </code></td>
+            <td>Four is a great number of books about History!</td>
+            <td class="jstrans">Four is a great number of books about History!</td>
+        </tr>
+        
+        
+        
+        <tr>
+            <td><code> trans_choice('jslang::demo.books2',1000],['theme'=&gt;'History']) </code></td>
+            <td>The number of books you have is uncountable!</td>
+            <td class="jstrans">The number of books you have is uncountable!</td>
+        </tr>
+        
+        
+        <tr>
+            <td><code> trans('jslang::demo.missing_key') </code></td>
+            <td>jslang::demo.missing_key</td>
+            <td class="jstrans">jslang::demo.missing_key</td>
+        </tr>
+        
+        
+    </tbody>
+</table>
 
