@@ -212,7 +212,7 @@ class JSLangCommand extends Command {
         
         $hash = hash_file('md5', $js_file_path);
         
-        $this->manifest[$locale] = config('jslang.public_dir') . '/' . $js_file_name . '?' . $hash;
+        $this->manifest[$locale] = '/' . config('jslang.public_dir') . '/' . $js_file_name . '?' . $hash;
         
     }
     
