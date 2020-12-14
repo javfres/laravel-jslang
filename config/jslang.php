@@ -9,6 +9,11 @@ return [
     // 'locales' => ['en','es'], // Example with only english and spanish
     
     //
+    // Default locale
+    //
+    'default_locale' => 'en',
+
+    //
     // List of files, a empty array means all of them
     //
     'files'          => [],

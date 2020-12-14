@@ -23,7 +23,7 @@ It supports the `trans` function and the basic part of the `trans_choice`.
 
 Add this require to the `composer.json`:
 
-`"javfres/laravel-jslang": "dev-master"`
+`"javfres/laravel-jslang": "^1.1.0"`
 
 And also the repository
 
@@ -65,5 +65,37 @@ Add this to the routes:
 Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
 ```
 
+## Development
+
+```
+"repositories": [
+    {
+        "type": "path",
+        "url": "../laravel-jslang"
+    }
+],
+
+```
+
+`"javfres/laravel-jslang": "^1.1.0"`
+
+`composer update javfres/laravel-jslang`
+
+`php artisan package:discover`
 
 
+### Compiling the base javascript file
+
+I am using babel to generate the base javascript file that contains 
+the `trans` function.
+
+```
+npm install
+npm run compile
+```
+
+A demo
+
+```
+node src/js/demo_dict.js
+```

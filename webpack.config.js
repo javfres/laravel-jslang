@@ -1,24 +1,9 @@
-
-var webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-    mode: 'production',
-    entry: {
-        entry: __dirname + '/src/js/trans.js'
-    },
-    output: {
-        filename: 'trans-compiled.js'
-    },
-    module: {
-       rules: [
-           {
-               test: /\.js$/,
-               loader: 'babel-loader',
-               exclude: /node_modules/,
-               query: {
-                   presets: ['es2015']
-               }
-           }
-       ]
-   },
-}
+  entry: __dirname + '/src/js/trans.js',
+  output: {
+    filename: 'trans-compiled.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
