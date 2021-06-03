@@ -1,7 +1,8 @@
 
 
+import JSLang from '../ts/jslang';
 
-global.JsLang_DICT = {
+const dict = {
     '*':{
         "profile":{
             "user": "Usuario",
@@ -27,11 +28,12 @@ global.JsLang_DICT = {
 };
 
 
-// Simulate browser
-global.window = {};
-require('./trans');
-const trans = window.trans;
-const trans_choice = window.trans_choice;
+
+JSLang.init('en', {'en': null}, dict);
+
+
+const trans = JSLang.trans;
+const trans_choice = JSLang.trans_choice;
 
 
 console.log(trans('profile.user'));
@@ -42,6 +44,7 @@ console.log(trans('profile.welcome',{name:true}));
 console.log(trans('XXX'));
 console.log(trans('profile',{param:true}));
 console.log(trans_choice('messages.apples', 1));
+console.log(trans_choice('messages.apples', ['one']));
 console.log(trans_choice('messages.apples', 2));
 console.log(trans_choice('messages.apples2', 0));
 console.log(trans_choice('messages.apples2', 2));
@@ -54,7 +57,3 @@ console.log(trans_choice('messages.books2', ['A','B','C','D'], {theme:'Science F
 console.log(trans_choice('messages.books2', 10, {theme:'Science Fiction'}));
 
 console.log(trans_choice('profile.user', 10));
-
-
-
-

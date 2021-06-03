@@ -202,20 +202,29 @@ class JSLangCommand extends Command {
         $json_dict = json_encode($dict);
         
         $js_file = file_get_contents(__DIR__.'/../dist/trans-compiled.js');
-        $js_file = str_replace('JsLang_DICT', $json_dict, $js_file);
+
+        
+        $json_dict = "const JSLang_CURRENT_DICT = $json_dict;";
+
+
+        $js_lang_file = $json_dict . $js_file;
+
         
         $js_prefix = config('jslang.js_file_prefix');
-        $js_file_name = "$js_prefix$locale.js";
-        $js_file_path = $path . '/' . $js_file_name;
-        
-        file_put_contents($js_file_path, $js_file);
-        
-        $hash = hash_file('md5', $js_file_path);
-        
-        $this->manifest[$locale] = '/' . config('jslang.public_dir') . '/' . $js_file_name . '?' . $hash;
+        $file_name = "$js_prefix$locale.js";
+        $file_path = $path . '/' . $file_name;
+
+        file_put_contents($file_path, $js_lang_file);
+
+
+        $hash = hash_file('md5', $file_path);
+
+        $this->manifest[$locale] = '/' . config('jslang.public_dir') . '/' . $file_name . '?' . $hash;
+    
         
     }
-    
+
+
     private function generate_manifest(){
         
         $content = json_encode($this->manifest, JSON_PRETTY_PRINT);

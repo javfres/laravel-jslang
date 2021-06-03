@@ -77,7 +77,7 @@ Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
 
 ```
 
-`"javfres/laravel-jslang": "^1.1.0"`
+`"javfres/laravel-jslang": "^2.0.0"`
 
 `composer update javfres/laravel-jslang`
 
@@ -87,7 +87,7 @@ Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
 ### Compiling the base javascript file
 
 I am using babel to generate the base javascript file that contains 
-the `trans` function.
+the `JSLang` class with the `trans` and `trans_choice` static methods.
 
 ```
 npm install
