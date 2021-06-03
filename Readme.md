@@ -23,7 +23,7 @@ It supports the `trans` function and the basic part of the `trans_choice`.
 
 Add this require to the `composer.json`:
 
-`"javfres/laravel-jslang": "^1.1.0"`
+`"javfres/laravel-jslang": "^2.0.0"`
 
 And also the repository
 
@@ -52,8 +52,13 @@ Generate the javascript dictionaries from the php ones:
 Add the script in the blade (this will load the dictionary based on the current locale):
 
 ```
-<script src="{{ jslang() }}"></script>
+{!! jslang() !!}
 ```
+
+This defines a global `JSLang` object. With the `trans` and `trans_choice` methods.
+It has also a `setLocale` async method to change the locale loading it from
+the server with ajax.
+
 
 ## Demo
 
@@ -77,7 +82,7 @@ Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
 
 ```
 
-`"javfres/laravel-jslang": "^1.1.0"`
+`"javfres/laravel-jslang": "^2.0.0"`
 
 `composer update javfres/laravel-jslang`
 
@@ -87,7 +92,7 @@ Route::get('/jslang-demo', function (){ return view('jslang::demo'); });
 ### Compiling the base javascript file
 
 I am using babel to generate the base javascript file that contains 
-the `trans` function.
+the `JSLang` class with the `trans` and `trans_choice` static methods.
 
 ```
 npm install
@@ -97,5 +102,5 @@ npm run compile
 A demo
 
 ```
-node src/js/demo_dict.js
+npm run demo
 ```

@@ -1,13 +1,79 @@
+
+
+//
+// Utility classes for the trans_choice
+//
+
+interface Selector {
+    contains(x:number): boolean;
+}
+
+
+class Range implements Selector {
+
+    a: number|null = null;
+    b: number|null = null;
+
+    constructor(a: string, b: string){
+        this.a = isNaN(parseInt(a)) ? null : +a;
+        this.b = isNaN(parseInt(b)) ? null : +b;
+    }
+
+    contains(x:number){
+
+        if(this.a === null && this.b === null){
+            return true;
+        } else if(this.a === null){
+            return x <= this.b;
+        } else if(this.b === null) {
+            return x >= this.a;
+        }
+        
+        return this.a<=x && this.b>=x;
+    } // contains
+};
+
+class List implements Selector {
+
+    list: number[];
+
+    constructor(arr: (string|number)[]){            
+        this.list = arr.map(x => +x);
+    }
+    contains(x: number){
+        for(let i=0; i<this.list.length; i++){
+            if(this.list[i] === x) return true;
+        }
+        return false;
+    }
+};
+
+class Rest implements Selector {
+    contains(x:number){ 
+        return true;
+    }
+};
+
+
+type Option = {
+    selector: Selector;
+    line: string;
+};
+
+
+
 //
 // The class that does the magic of the trans_choice function
 //
-class Choicer {
+export default class Choicer {
+
+    options: Option[];
     
-    constructor(line){
+    constructor(line: string){
                     
         this.options = [];
                     
-        line.split('|').map( (line,i) => {
+        line.split('|').map( (line, i) => {
             line = line.trim();
             if(!line.length) return;
             
@@ -28,9 +94,9 @@ class Choicer {
         
     }
     
-    process_line(line){
-        
-        
+    process_line(line: string): Option {
+
+
         if(line[0] === '{'){
             let parts = line.substring(1).split('}');
             let nums = parts[0].split(',');
@@ -68,7 +134,7 @@ class Choicer {
     }
     
     
-    get(count){
+    get(count: number){
         
         if(this.options.length === 1)
             return this.options[0].line;
@@ -84,45 +150,3 @@ class Choicer {
     }
     
 } // class
-
-
-
-//
-// Utility classes for the trans_choice
-//
-
-class Range {
-    constructor(a,b){
-        this.a = isNaN(a.trim()) ? null : +a;
-        this.b = isNaN(b.trim()) ? null : +b;
-    }
-    contains(x){
-        if(this.a === null && this.b === null){
-            return true;
-        } else if(this.a === null){
-            return x <= this.b;
-        } else if(this.b === null) {
-            return x >= this.a;
-        }
-        
-        return this.a<=x && this.b>=x;
-    } // contains
-};
-
-class List {
-    constructor(arr){            
-        this.list = arr.map(x => +x);
-    }
-    contains(x){
-        for(let i=0; i<this.list.length; i++){
-            if(this.list[i] === x) return true;
-        }
-        return false;
-    }
-};
-
-class Rest {
-    contains(x){ return true; }
-};
-
-module.exports = Choicer;

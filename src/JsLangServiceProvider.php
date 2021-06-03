@@ -4,7 +4,7 @@ namespace Javfres\JsLang;
 
 use Illuminate\Support\ServiceProvider;
 
-class JsLangServiceProvider extends ServiceProvider{
+class JsLangServiceProvider extends ServiceProvider {
 
     public function boot(){
         
